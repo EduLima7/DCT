@@ -1,0 +1,1 @@
+O código ainda não faz a compressão em sí, o objetivo final é comprimir a imagem usando o padrão JPEG.
