@@ -3,7 +3,7 @@ pkg load signal
 fullPath = ('C:\Users\Edu\Desktop\Nova pasta\Imagem para teste\couple.tiff');
 A = imread(fullPath);
 figure, imshow(A)
-#A = [ 1 2 3 4 ; 5 6 7 8; 9 10 11 12 ; 13 14 15 16];
+
 B = zeros(512,512); C=B;
 
 Q = [ 16, 11, 10, 16, 24, 40, 51, 61 ;
