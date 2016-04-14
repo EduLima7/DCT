@@ -40,7 +40,6 @@ for i = 1:x/M,
 end
 
 
-
 figure,imshow(C)
 
 imwrite(C,'C:\Users\Edu\Desktop\Nova pasta\Imagem para teste\couple-compress.JPEG');
