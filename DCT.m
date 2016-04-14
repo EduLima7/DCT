@@ -1,34 +1,39 @@
 clear; clc;
-pkg load signal
+pkg load signal;
+pkg load image;
 fullPath = ('C:\Users\Edu\Desktop\Nova pasta\Imagem para teste\couple.tiff');
 A = imread(fullPath);
-figure, imshow(A)
-#A = [ 1 2 3 4 ; 5 6 7 8; 9 10 11 12 ; 13 14 15 16];
-B = zeros(512,512); C=B;
 
-Q = [ 16, 11, 10, 16, 24, 40, 51, 61 ;
-      12, 12, 14, 19, 26, 58, 60, 55 ;
-      14, 13, 16, 24, 40, 57, 69, 56 ;
-      14, 17, 22, 29, 51, 87, 80, 62 ;
-      18, 22, 37, 56, 68, 109, 103, 77 ;
-      24, 35, 55, 64, 81, 104, 113, 92 ;
-      49, 64, 78, 87, 103, 121, 120, 101 ;
-      72, 92, 95, 98, 112, 100, 103, 99];
+figure, imshow(A)
+
+
+[x,y] = size(A); 
+
+B = uint8(zeros(x,y));   C=B;
+
+
+for i = 1:8
+  for j = 1:8
+    Q(i,j) = 1+(1+i+j)*2;
+  end
+end
 
 for i = 1:64,
   for j = 1:64,
-    C = A(8*i-7:8*i,8*j-7:8*j);
-    C = C./Q;
-    C = dct2(C);
-    C = round(C);
-    C = C.*Q;
-    C = idct2(C);
-    C = round(C);
-    B(8*i-7:8*i,8*j-7:8*j)= C;
+    B = A(8*i-7:8*i,8*j-7:8*j);
+    B = dct2(B);
+    B = B./Q;
+    B = round(B);
+    B = B.*Q;
+    B = idct2(B);
+    B = round(B);
+    C(8*i-7:8*i,8*j-7:8*j)= B;
    end
 end
 
 
-figure,imshow(B)
 
-imwrite(B,'C:\Users\Edu\Desktop\Nova pasta\Imagem para teste\couple2.tiff');
+
+figure,imshow(C)
+
+imwrite(C,'C:\Users\Edu\Desktop\Nova pasta\Imagem para teste\couple-compress.JPEG');
