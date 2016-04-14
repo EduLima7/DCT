@@ -1,1 +1,1 @@
-O código ainda não faz a compressão em sí, o objetivo final é comprimir a imagem usando o padrão JPEG.
+O código de limita a imagens em escalas de cinza, por enquanto ;)

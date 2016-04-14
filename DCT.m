@@ -11,23 +11,28 @@ figure, imshow(A)
 
 B = uint8(zeros(x,y));   C=B;
 
+#Dimensão dos blocos que são aplicados DCT
+M = 8;    N = 8;
 
-for i = 1:8
-  for j = 1:8
-    Q(i,j) = 1+(1+i+j)*2;
+#Fator de Qualidade
+F = 2; 
+
+for i = 1:M
+  for j = 1:N
+    Q(i,j) = 1+(1+i+j)*F;
   end
 end
 
-for i = 1:64,
-  for j = 1:64,
-    B = A(8*i-7:8*i,8*j-7:8*j);
+for i = 1:x/M,
+  for j = 1:y/N,
+    B = A(M*i-(M-1):M*i,N*j-(N-1):N*j);
     B = dct2(B);
     B = B./Q;
     B = round(B);
     B = B.*Q;
     B = idct2(B);
     B = round(B);
-    C(8*i-7:8*i,8*j-7:8*j)= B;
+    C(M*i-(M-1):M*i,N*j-(N-1):N*j)= B;
    end
 end
 
